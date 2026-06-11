@@ -7,3 +7,56 @@
         <h1>isso é um titulo</h1>
     </body>
 </html>
+import time
+import random
+
+class MonitoramentoAgroSustentavel:
+    def __init__(self, fazenda_nome):
+        self.fazenda_nome = fazenda_nome
+        print(f"--- Sistema {self.fazenda_nome} Inicializado com Sucesso ---")
+        print("Foco: Alta Produtividade com Baixo Impacto Ambiental\n")
+
+    def simular_sensores_solo(self):
+        """Simula a leitura de sensores de umidade e nutrientes do solo."""
+        umidade = random.randint(15, 85)  # em porcentagem
+        nutrientes_nitrogenio = random.randint(10, 100)  # em mg/kg
+        return umidade, nutrientes_nitrogenio
+
+    def analisar_dados(self, umidade, nitrogenio):
+        """Analisa os dados dos sensores e toma decisões ecológicas."""
+        print(f"[LOG] Umidade Atual do Solo: {umidade}%")
+        print(f"[LOG] Nível de Nitrogênio: {nitrogenio} mg/kg")
+        
+        # Tomada de decisão para Irrigação Inteligente
+        if umidade < 30:
+            status_irrigacao = "⚠️ Irrigação Ligada: Solo seco. Liberando quantidade exata de água."
+        elif 30 <= umidade <= 70:
+            status_irrigacao = "✅ Irrigação Desligada: Umidade ideal para economia de recursos."
+        else:
+            status_irrigacao = "🚨 Alerta: Solo encharcado! Risco de desperdício e erosão."
+
+        # Tomada de decisão para Fertilização Consciente
+        if nitrogenio < 40:
+            status_fertilizante = "🌱 Recomendação: Aplicar adubo orgânico/compostagem (Evite fertilizantes químicos)."
+        else:
+            status_fertilizante = "✅ Nutrientes Estáveis: Sem necessidade de aditivação."
+
+        return status_irrigacao, status_fertilizante
+
+    def executar_monitoramento(self, ciclos=3):
+        """Executa o loop de monitoramento da fazenda."""
+        for i in range(1, ciclos + 1):
+            print(f"--- Ciclo de Checagem #{i} ---")
+            umidade, nitrogenio = self.simular_sensores_solo()
+            irrigacao, fertilizante = self.analisar_dados(umidade, nitrogenio)
+            
+            print(f"Ação Recomendada: {irrigacao}")
+            print(f"Ação Recomendada: {fertilizante}")
+            print("-" * 40)
+            time.sleep(2)  # Pausa de 2 segundos entre as leituras
+
+# --- Execução do Programa ---
+if __name__ == "__main__":
+    # Nome da sua fazenda tecnológica e sustentável
+    minha_fazenda = MonitoramentoAgroSustentavel("Fazenda Futuro Verde")
+    minha_fazenda.executar_monitoramento(ciclos=3)
